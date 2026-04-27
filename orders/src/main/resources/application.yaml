@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: redis-streams-order-processing
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2s
+
+server:
+  port: 8080
+
+app:
+  redis-streams:
+    orders-stream: orders
+    dlq-stream: orders-dlq
+    consumer-group: notification-group
+    consumer-name: notification-service-1
+    max-retry-attempts: 3
+    claim-idle-time-ms: 5000
+    pending-check-delay-ms: 5000
+    pending-batch-size: 20
+
+logging:
+  level:
+    com.example.redisstreamsorders: INFO
+    org.springframework.data.redis: INFO
